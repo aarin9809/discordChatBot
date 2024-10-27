@@ -11,10 +11,7 @@ class MyClient(discord.Client):
         if message.author.id == self.user.id:
             return
 
-        if message.content.startswith('!hello'):
-            await message.reply('Hello!', mention_author=True)
-
-        if message.content.startswith('!weather'):
+        if message.content.startswith('/날씨'):
             cmd = message.content.split()
             print(cmd)
             if len(cmd) == 2:

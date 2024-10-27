@@ -24,9 +24,11 @@ def weather(text):
         html = response.text
         soup = BeautifulSoup(html, 'html.parser')
         cmd = {
-            "today": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(2)",
-            "tomo": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(3)",
-            "dato": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(4)"
+            "종합": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span.depth_1",
+            "오늘": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(2)",
+            "내일": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(3)",
+            "모레": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(4)",
+            "글피": "#after-dfs-forecast > div:nth-child(1) > section > div.cmp-view-content > p > span:nth-child(5)"
         }
         if text in cmd.keys():
             elements = soup.select(cmd[text])
@@ -35,7 +37,7 @@ def weather(text):
             else:
                 return "날씨 정보를 찾을 수 없습니다. 선택자가 맞는지 확인해주세요."
         else:
-            return "올바른 명령어를 입력하세요. (예: today, tomo, dato)"
+            return "올바른 명령어를 입력하세요."
     else:
         print(response.status_code)
         return "날씨 데이터를 가져오지 못했습니다. 상태 코드: " + str(response.status_code)
